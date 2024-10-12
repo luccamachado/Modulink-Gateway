@@ -7,10 +7,14 @@ import paho.mqtt.client as mqtt
 
 # The callback for when the client receives a CONNACK response from the server.
 def onConnectMQTT(client, userdata, flags, reason_code, properties):
-    print(f"Connected with result code {reason_code}")
+    print(f"Connected with result code: {reason_code}")
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("$SYS/#")
+    # client.subscribe("$SYS/#")
+    loadClientConfig()
+
+def loadClientConfig():
+    pass
 
 # The callback for when a PUBLISH message is received from the server.
 def onMessageMQTT(client, userdata, msg):
@@ -32,9 +36,10 @@ def main():
     
     # Initialize CAN-BUS
     systemCAN_Bus = can.interface.Bus('can0', bustype='socketcan', bitrate=250000)
-    systemCAN_Printer = can.Printer()
+    systemCAN_Bus_Notifier = can.Notifier(systemCAN_Bus, [systemCAN_ReceiveMessage])
 
-    systemCAN_Bus_Notifier = can.Notifier(systemCAN_Bus, [systemCAN_Printer, systemCAN_ReceiveMessage])
+    # systemCAN_Printer = can.Printer()
+    # systemCAN_Bus_Notifier.add_listener(systemCAN_Printer)
 
     
     mqttClient.subscribe("test/ping")
