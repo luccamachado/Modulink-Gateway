@@ -7,7 +7,7 @@ import paho.mqtt.client as mqtt
 
 
 
-def systemCAN_ReceiveMessage():
+def systemCAN_ReceiveMessage(msg):
     pass
 
 def main():
