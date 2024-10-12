@@ -23,7 +23,7 @@ def main():
         sys.exit(-1)
     
     # Initialize CAN-BUS
-    systemCAN_Bus = can.Bus('can0', bustype='socketcan', bitrate=250000)
+    systemCAN_Bus = can.interface.Bus('can0', bustype='socketcan', bitrate=250000)
     systemCAN_Printer = can.Printer()
 
     systemCAN_Bus_Notifier = can.Notifier(systemCAN_Bus, [systemCAN_Printer, systemCAN_ReceiveMessage])
