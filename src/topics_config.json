@@ -1,0 +1,30 @@
+{
+    "Protocol Version": 0.1,
+
+    "SystemCAN/raw": {
+        "type": "publish",
+        "qos": 0,
+        "retain": true,
+        "CAN_dbc": {
+        }
+    },
+    
+    "CCU/OperatorIntention/AcceleratorIntensityRequest": {
+        "type": "publish",
+        "qos": 2,
+        "retain": true,
+        "CAN_dbc": {
+            "Message": "Operator_Input",
+            "Signal": "Accelerator_Intensity_Request"
+        }
+    },
+
+    "test/ping": {
+        "type": "subscribe",
+        "qos": 2,
+        "retain": true,
+        "CAN_dbc": {   
+        }
+    }
+
+}
